@@ -1,0 +1,62 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<iomanip>
+struct Node{
+    int data;
+    Node *next;
+};
+Node* insert(int target,Node *head){
+    Node *newnode=new Node();
+    newnode->data=target;
+    newnode->next=nullptr;
+    Node *temp=head;
+    if (head == nullptr) {
+        return newnode;
+    }
+    while(temp->next!=nullptr){
+        temp=temp->next;
+    }
+    temp->next=newnode;
+    return head;
+}
+int main() {
+    Node *head=nullptr,*newnode=nullptr,*temp=nullptr;
+    int choice=1;
+    int count=0;
+    int target;
+    while(choice){
+        newnode=new Node();
+        std::cout<<"Enter the data: ";
+        std::cin>>newnode->data;
+        newnode->next=nullptr;
+        if(head==nullptr){
+            head=newnode;
+            temp=newnode;
+        }
+        else{
+            temp->next=newnode;
+            temp=newnode;
+        }
+        std::cout<<"Enter choice(0,1)?";
+        std::cin>>choice;
+    }
+    std::cout<<"Enter the value you wanted to insert: ";
+    std::cin>>target;
+    temp=head;
+    std::cout<<"Before inserting"<<std::endl;
+    while(temp!=nullptr){
+        std::cout<<temp->data;
+        std::cout<<std::endl;
+        temp=temp->next;
+        count++;
+    }
+    std::cout<<"Count of nodes: "<<std::setfill('0')<<std::setw(2)<<count<<std::endl;
+    head=insert(target,head);
+    temp=head;
+    std::cout<<"After inserting"<<std::endl;
+    while(temp!=nullptr){
+        std::cout<<temp->data<<std::endl;
+        temp=temp->next;
+    }
+    return 0;
+}
