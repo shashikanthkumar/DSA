@@ -1,0 +1,47 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+};
+Node* reverse(Node* head){
+    Node *prev=nullptr,*cur=nullptr,*nextnode=nullptr;
+    cur=head;
+    nextnode=head;
+    while(nextnode!=nullptr){
+        nextnode=nextnode->next;
+        cur->next=prev;
+        prev=cur;
+        cur=nextnode;
+    }
+    return prev;
+}
+int main() {
+    Node *head=nullptr,*newnode=nullptr,*temp=nullptr;
+    int choice =1;
+    while(choice){
+        newnode =new Node();
+        cout<<"Enter the data"<<endl;
+        cin>>newnode->data;
+        newnode->next=nullptr;
+        if(head==nullptr){
+            head=newnode;
+            temp=newnode;
+        }
+        else{
+            temp->next=newnode;
+            temp=newnode;
+        }
+        cout<<"Enter the choice (0,1)?";
+        cin>>choice;
+    }
+    head =reverse(head);
+    temp=head;
+    while(temp!=nullptr){
+        cout<<temp->data<<endl;
+        temp=temp->next;
+    }
+
+    return 0;
+}
