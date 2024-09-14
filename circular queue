@@ -1,0 +1,94 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class queue{
+    public static class queuell{
+        int f=-1;
+        int r=-1;
+        int size=0;
+        int n=5;
+        int[] arr=new int[n];
+        public void add(int val){
+            if(size==0){
+                f=0;
+                r=0;
+                arr[0]=val;
+            }
+            else if(size==5){
+                System.out.println("Queue is full");
+                return;
+            }
+            else if(size==arr.length-1){
+                r=0;
+                arr[0]=val;
+            }
+            else{
+               arr[++r]=val;
+            }
+            size++;
+            System.out.println("Order ID "+val+" is inserted in the queue");
+        }
+        public void delete(){
+            if(size==0){
+                System.out.println("Queue is full");
+            }
+            else if(f==n-1){
+                int v=arr[f];
+                f=0;
+                System.out.println("Processed Order ID: "+v);
+                size--;
+            }
+            else{
+                f++;
+                System.out.println("Processed Order ID: "+arr[f-1]);
+                size--;
+            }
+        }
+        public void display(){
+            if(size==0){
+                System.out.println("Queue is empty");
+                return;
+            }
+            System.out.print("Order IDs in the queue are: ");
+            if(f<=r){
+                for(int i=f;i<=r;i++){
+                    System.out.print(arr[i]+" ");
+                }
+                System.out.println();
+            }
+            else{
+               for(int i=f;i<n;i++){
+                    System.out.print(arr[i]+" ");
+                }
+                for(int i=r;i<f;i++){
+                    System.out.print(arr[i]+" ");
+                }
+                System.out.println();
+            }
+        }
+    }
+    public static void main(String[] args){
+            queuell q=new queuell();
+            Scanner sc=new Scanner(System.in);
+            while(sc.hasNextInt()){
+                int c=sc.nextInt();
+                if(c==1){
+                    if(!sc.hasNextInt()){
+                    break;
+                }
+                    int value=sc.nextInt();
+                    q.add(value);
+            }
+                else if(c==2){
+                    q.delete();
+            }
+                else if(c==3){
+                    q.display();
+            }
+                else{
+                    System.out.println("Invalid option");
+            }
+            }
+    }
+    
+}
