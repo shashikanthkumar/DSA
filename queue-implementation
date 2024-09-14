@@ -1,0 +1,70 @@
+// You are using Java
+import java.util.*;
+class prosystem{
+    public static class queuea{
+        int f=-1;
+        int r=-1;
+        int size=0;
+        int[] arr=new int[5];
+        public void add(int val){
+            if(r==arr.length-1){
+                System.out.println("Queue is full");
+                return;
+            }
+            if(f==-1){
+                r=0;
+                f=0;
+            }
+            else{
+                r++;
+            }
+            System.out.println("Order ID "+val+" is inserted in the queue");
+            arr[r]=val;
+            size++;
+        }
+        public void delete(){
+            if(size==0){
+                System.out.println("Queue is empty");
+                return;
+            }
+            f++;
+            size--;
+            System.out.println("Processed Order ID: "+arr[f-1]);
+        }
+        public void display(){
+            if(size==0){
+                System.out.println("Queue is empty");
+                return;
+            }
+            System.out.print("Order IDs in the queue are: ");
+            for(int i=f;i<=r;i++)
+            {
+                System.out.print(arr[i]+" ");
+            }
+                System.out.println();
+        }
+    }
+        public static void main(String[] args){
+            queuea q=new queuea();
+            Scanner sc=new Scanner(System.in);
+            while(sc.hasNextInt()){
+                int c=sc.nextInt();
+                if(c==1){
+                    if(!sc.hasNextInt()){
+                    break;
+                }
+                    int value=sc.nextInt();
+                    q.add(value);
+            }
+                else if(c==2){
+                    q.delete();
+            }
+                else if(c==3){
+                    q.display();
+            }
+                else{
+                    System.out.println("Invalid option");
+            }
+            }
+        }
+}
